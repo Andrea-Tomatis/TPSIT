@@ -34,11 +34,10 @@ int readSongs(Song playlist[], char filename[]){
 
     while(fgets(line,STR_LEN,fp) != NULL){ //read each line of the file
         /*
-        sscanf(): read from a value from a string
         strtok(): divide a string by character or substring
         */
         //stores the index of the song in the songs array
-        sscanf(strtok(line, ",\n"), "%d", &playlist[k].ind);  
+        playlist[k].ind = atoi(strtok(line,",\n"));
 
         //stores the title of the song in the songs array
         strncpy(playlist[k].title, strtok(NULL, ",\n"), STR_LEN); 
