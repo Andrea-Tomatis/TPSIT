@@ -46,41 +46,33 @@ int readSongs(Song *playlist, char *filename, int k){
         i++;
     }
 
+    free(line);
     return 0;
 }
 
 
-//this function control if an index has already been sorted
-//it returns true if it has or false if it hasn't
-bool isPlayed(int ind, int *played_songs, int k){
-    int i = 0;
-    bool ok = false;
-    while(i < k && !ok)
-        if(*(played_songs + i++) == ind) ok = true;
-    return ok;
-}
+
 
 
 //this function print songs in a random order
 void playrandom(Song *playlist,int k){
-    int *played_songs = (int*) malloc(k * sizeof(int)); //array of extracted song index
+    Song* played_songs = playlist; //array of extracted song index
     int index;  //extract index
-    int nplayed = 0;  //number of played songs
 
     srand(time(NULL));  //set the random seed using the time() function, from time.h
     for(int i = 0; i < k; i++){  //it sorts number while all songs are played
         //this do while loop controls that the sorted song hasn't already been sorted
         do{
             index = rand() % (k);
-        }while(isPlayed(index,played_songs,nplayed));
+        }while((played_songs+index)->ind == -1);
 
         //print the song
         printf("%-2d: %s | %s\n",i+1,(playlist + index)->title,(playlist + index)->author);
 
         //increase the number of played songs by 1 and append the sorted index to the played song index array
-        *(played_songs + nplayed++) = index; 
+        (played_songs + index)->ind = -1; 
     }  //end the for loop
-
+    free(played_songs);
     return;
 }
 
@@ -104,10 +96,10 @@ int main(){
     
     int k = leggiNumRighe("spotify.csv");
     Song *playlist = (Song*) malloc(k * sizeof(Song));
-    int nsongs = readSongs(playlist,"spotify.csv",k);  //number of songs in the file
-    if(nsongs == ERROR) printf("error: no such file found\n"); //if the file doesn't exist, print error
+    int readingFile = readSongs(playlist,"spotify.csv",k);  //number of songs in the file
+    if(readingFile == ERROR) printf("error: no such file found\n"); //if the file doesn't exist, print error
     else playrandom(playlist,k);  //else it plays all songs in random order
     
-    
+    free(playlist);
     return 0; 
 }
