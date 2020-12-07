@@ -25,30 +25,7 @@ typedef struct song{
 
 
 
-/*
-not-recorsive version of push function
-void push(Song* p, int i, char* t, char* a){
-    struct song* p_appoggio = p;
-    
-    if(i == 1){
-        p->author = strdup(a);
-        p->title = strdup(t);
-        p->ind = i;
-        p->next = NULL;
-        return;
-    }
-    while(p_appoggio->next != NULL)
-        p_appoggio = p_appoggio->next;
-    
-        
-    p_appoggio->next = (Song*)malloc(sizeof(Song));
-    p_appoggio->next->ind = i;
-    p_appoggio->next->title = strdup(t);
-    p_appoggio->next->author = strdup(a);
-    p_appoggio->next->next = NULL;
-    return;
-}
-*/
+
 void push(Song* p, int id, char* t, char* a){
     if(id == 1){
         p->author = strdup(a);
@@ -98,6 +75,45 @@ Song* trova(int n, Song* p){
         return trova(n-1,p->next);
 }
 
+
+
+int riproduciRandom(Song* playlist, Song* p, int n){
+    if(playlist == NULL){
+        srand(time(NULL));
+        return n;
+    }else{
+        int num = riproduciRandom(playlist->next,p,++n);
+        struct song* p_appoggio;
+        int numrand;
+        
+        do{
+            numrand = rand()%num;
+            p_appoggio = trova(numrand,p);
+        }while(p_appoggio->ind == -1);
+        
+        printf("%d- %s %s\n",p_appoggio->ind,p_appoggio->title,p_appoggio->author);
+        p_appoggio->ind = -1;
+        return num;
+    }
+}
+
+int main(){
+    struct song* playlist = (struct song*) malloc(sizeof(struct song));
+    //lettura file
+    int a;
+    if (leggiFile("spotify.csv",playlist) == ERROR){
+        printf("error: no such file found\n");
+        return ERROR;
+    }else
+        riproduciRandom(playlist,playlist,0);
+    
+    return 0;
+}
+
+
+
+/*
+not ricorsive version on riproduciRandom
 void riproduciRandom(Song* playlist){
     struct song* p_appoggio = playlist;
     int n = 1;
@@ -119,16 +135,29 @@ void riproduciRandom(Song* playlist){
     
     return;
 }
+*/
 
-int main(){
-    struct song* playlist = (struct song*) malloc(sizeof(struct song));
-    //lettura file
-    if (leggiFile("spotify.csv",playlist) == ERROR){
-        printf("error: no such file found\n");
-        return ERROR;
-    }else
-        riproduciRandom(playlist);
+/*
+not-recorsive version of push function
+void push(Song* p, int i, char* t, char* a){
+    struct song* p_appoggio = p;
     
-    return 0;
+    if(i == 1){
+        p->author = strdup(a);
+        p->title = strdup(t);
+        p->ind = i;
+        p->next = NULL;
+        return;
+    }
+    while(p_appoggio->next != NULL)
+        p_appoggio = p_appoggio->next;
+    
+        
+    p_appoggio->next = (Song*)malloc(sizeof(Song));
+    p_appoggio->next->ind = i;
+    p_appoggio->next->title = strdup(t);
+    p_appoggio->next->author = strdup(a);
+    p_appoggio->next->next = NULL;
+    return;
 }
-
+*/
