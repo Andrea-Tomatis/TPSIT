@@ -97,15 +97,30 @@ int riproduciRandom(Song* playlist, Song* p, int n){
     }
 }
 
+void disalloca(Song* p){
+
+    if(p->next == NULL){
+        free(p);
+        return;
+    }else{
+        disalloca(p->next);
+        free(p);
+        return;
+    }
+        
+
+}
+
 int main(){
     struct song* playlist = (struct song*) malloc(sizeof(struct song));
-    //lettura file + riproduzione casuale
+    //lettura file + riproduzione random
     if (leggiFile("spotify.csv",playlist) == ERROR){
         printf("error: no such file found\n");
         return ERROR;
     }else
         riproduciRandom(playlist,playlist,0);
     
+    disalloca(playlist);
     return 0;
 }
 
