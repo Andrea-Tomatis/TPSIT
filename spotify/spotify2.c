@@ -99,8 +99,7 @@ int riproduciRandom(Song* playlist, Song* p, int n){
 
 int main(){
     struct song* playlist = (struct song*) malloc(sizeof(struct song));
-    //lettura file
-    int a;
+    //lettura file + riproduzione casuale
     if (leggiFile("spotify.csv",playlist) == ERROR){
         printf("error: no such file found\n");
         return ERROR;
