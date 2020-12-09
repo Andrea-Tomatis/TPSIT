@@ -64,6 +64,9 @@ int leggiFile(char* nomeFile, Song* playlist){
         push(p_appoggio,id,title,author);
     }
 
+    free(line);
+    free(title);
+    free(author);
     fclose(fp);
     return 0;
 }
