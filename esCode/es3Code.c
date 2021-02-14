@@ -56,16 +56,17 @@ struct node* dequeue(struct node** head,
 
 void push(struct node** head,
           struct node** tail, struct node* element){
-    struct node* support_head;
-    struct node* support_tail;
-    
-    while(isempty(*head)){
-        enqueue(&support_head, &support_tail, dequeue(head, tail));
+    struct node* support_head = NULL;
+    struct node* support_tail = NULL;
+    struct node* element3;
+    while(!isempty(*head)){
+        element3 =  dequeue(head, tail);
+        enqueue(&support_head, &support_tail,element3);
     }
 
     enqueue(head, tail, element);
 
-    while(isempty(support_head)){
+    while(!isempty(support_head)){
         enqueue(head, tail, dequeue(&support_head, &support_tail));
     }
 
@@ -80,9 +81,9 @@ struct node* pop(struct node** head,
 
 
 int main(){
-    printf("ciao");
-    struct node* stack_head;
-    struct node* stack_tail;
+    
+    struct node* stack_head = NULL;
+    struct node* stack_tail = NULL;
     struct node* element;
 
     for(int i = 0; i < 10; i++){
@@ -92,7 +93,7 @@ int main(){
         push(&stack_head, &stack_tail, element);
     }
 
-    printf("%d\n", pop(&stack_head, &stack_tail)->val);
+    printf("ultimo elemento: %d\n", pop(&stack_head, &stack_tail)->val);
     
     return 0;
 }

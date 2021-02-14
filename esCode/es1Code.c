@@ -59,7 +59,7 @@ void printQueue(struct node** head,
                 struct node** tail){
     struct node* support;
     
-    while(support != NULL){
+    while(!isempty(*head)){
         //assign to support the last element of the queue
         support = dequeue(head, tail);
         //print the value of support
@@ -67,7 +67,7 @@ void printQueue(struct node** head,
         //free the memory containing the last element of the queue
         free(support);
     }
-    
+    printf("%d\n");
     return;
 }
 
@@ -82,7 +82,7 @@ int main(){
     do{
         input_node = (struct node*) malloc(sizeof(struct node));
 
-        printf("\n>Digit a number: ");
+        printf(">Digit a number: ");
         scanf("%d", &input_node->val);
         
         enqueue(&head, &tail, input_node);
