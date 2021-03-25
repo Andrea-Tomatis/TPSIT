@@ -1,4 +1,9 @@
+/*
+Questo programma calcola quanti giorni sono necessari per contagiare un numero n di persone.
+Inoltre calcola il numero di contagiati per giorno.
 
+Author: Andrea Tomatis
+*/
 
 #include <stdio.h> 
 #include <stdlib.h>
