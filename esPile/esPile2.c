@@ -2,7 +2,7 @@
 Author: Andrea Tomatis
 
 esPile2: Scivere un programma che data un'espressione matematica controlli se le parentesi sono
-posizionate correttamente.s
+posizionate correttamente.
 
 */
 
