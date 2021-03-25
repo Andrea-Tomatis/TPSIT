@@ -1,3 +1,10 @@
+'''
+Data un'espressione matematica, controllare se tutte le parentesi sono inserite
+nell'ordine corretto.
+
+Author: Andrea Tomatis
+'''
+
 def push(stack,element):
     return stack.append(element)
     
