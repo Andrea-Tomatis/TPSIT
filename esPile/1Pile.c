@@ -1,3 +1,9 @@
+/*
+Data un numero, invertirlo
+
+Author: Andrea Tomatis
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
