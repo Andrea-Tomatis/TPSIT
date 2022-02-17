@@ -3,9 +3,9 @@ Date: 14/11/2020
 
 Author: Andrea Tomatis
 
-Read the covid data of italy from a csv file and find:
--the top 3 regions by focus terapy
--the total number of focus terapy
+Read the italians covid data from a csv file and find:
+-the top 3 areas by focused therapy
+-the total number of focused therapy
 -the top 3 regions by total positive cases
 
 */
