@@ -1,3 +1,6 @@
-# Repository contenenti gli esercizi per la materia tecnologia di progettazione di sistemi informatici e telecomunicazioni.
-# Andrea Tomatis
-# A.S. 20/21
+### This repository contains the technologies for the design of computer systems and telecommunications exercises.
+Andrea Tomatis
+A.S. 20/21
+
+
+
