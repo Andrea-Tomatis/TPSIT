@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Semaforo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Control the smart Streetlight</h1>
+      <br>
+      <form method="post">
+        <input type="text" placeholder="durata Verde" name="verde">
+        <input type="text" placeholder="Durata Rosso" name="rosso">
+        <input type="text" placeholder="Durata Giallo" name="giallo">
+        <input type="text" placeholder="Durata Spento" name="spento">
+        
+        <div style="padding-top: 2%;">
+          <span>Stato Pulsante</span>
+          <input type="checkbox" name="stato" value="stato" checked>
+        </div>
+        <br>
+        <input class="btn bg-success text-white" type="submit" value="aggiorna">
+        <input class="btn bg-primary text-white" type="submit" name="TEST" value="test">
+      </form>
+
+      {% if msg %}
+        <p class="msg"><strong>Status:</strong> {{ msg }}
+      {% endif %}
+    </div>
+  </body>
+</html>
