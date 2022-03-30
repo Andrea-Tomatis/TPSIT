@@ -1,0 +1,4 @@
+DUMMY = False
+SERVER_IP = '192.168.0.127'
+STRING_LENGHT = 30
+STOP = [(10,)]
