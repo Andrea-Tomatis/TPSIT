@@ -46,7 +46,7 @@ def api_obstacles():
         return json.dumps({'left' : robot.obstacle_left(), 'right': robot.obstacle_right()})
 
 
-@app.route('/api/v1/motors/both?', methods=['GET'])
+@app.route('/api/v1/motors/both', methods=['GET'])
 def api_motors():
     if request.method == 'GET':
         print(pwmL)
