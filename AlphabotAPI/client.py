@@ -3,14 +3,15 @@ import bs4
 import string
 import threading
 
+SERVER = '192.168.0.127'
+
 #check sensors
-url = 'http://192.168.0.127:5000/api/v1/sensors/obstacles'
+url = f'http://{SERVER}:5000/api/v1/sensors/obstacles'
 x = requests.get(url).json()
 print(x)
 
-url = 'http://192.168.0.127:5000/api/v1/motors/both?'
-obj = {'pwmL': 20, 'pwmR' : 20, 'time' : 5}
-x = requests.get(url, data=obj)
+url = f'http://{SERVER}:5000/api/v1/motors/both?pwmL=-20&pwmR=20&time=5'
+x = requests.get(url).json()
 print(x)
 
 

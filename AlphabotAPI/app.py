@@ -49,12 +49,15 @@ def api_obstacles():
 @app.route('/api/v1/motors/both', methods=['GET'])
 def api_motors():
     if request.method == 'GET':
-        print(pwmL)
+        pwmL = int(request.args.get('pwmL'))
+        pwmR = int(request.args.get('pwmR'))
+        mv_time = float(request.args.get('time'))
+
         try:
             robot.set_motor(pwmL, pwmR)
-            time.sleep(time)
+            time.sleep(mv_time)
             robot.stop()
-            return "operation succefully completed"
+            return json.dumps("operation succefully completed")
         except Exception as e:
             print(e)
             return "operation failed"
